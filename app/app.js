@@ -9,7 +9,11 @@ app.router = Backbone.Router.extend({
 });
 app.routes = new app.router();
 app.routes.on("route:default",function(actions){
-	app.content.show(new contentView);
+	var content=new contentView();
+	app.content.show(content);
+	$(window).resize(function(){
+		content.resize();
+	});
 });
 app.start=function(){
 	Backbone.history.start();

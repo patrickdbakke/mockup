@@ -29,9 +29,8 @@ var contentView = Marionette.ItemView.extend({
 		this.canvas = document.getElementById("canv");
 		if(this.canvas){
 			this.context = this.canvas.getContext("2d");
-			this.canvas.width = parseInt($("#canv").width());
-			this.canvas.height = parseInt($("#canv").height());
-			this.draw();
+			this.canvas.width=this.canvas.offsetWidth;
+			this.canvas.height=this.canvas.offsetHeight;
 		}
 	},
 	bgUpload:function(e){
@@ -39,6 +38,8 @@ var contentView = Marionette.ItemView.extend({
 		this.loadImageToDiv(file,"bg");
 	},
 	positionOverlay:function(e){
+		if($("#overlayButton").hasClass("disableClick"))
+			return false;
 		var that=this;
 		var c=$("#canv"),
 			o=$("#overlay"),
@@ -46,10 +47,8 @@ var contentView = Marionette.ItemView.extend({
 			clickSpots=this.clickSpots;
 		this.clickSpots[clickNum]=[e.offsetX,e.offsetY];
 		if(clickNum==3){
-			var width=c.width(),
-				height=c.height(),
-				width2=o.width(),
-				height2=o.height(),
+			var width=o.width(),
+				height=o.height(),
 				scaleX=1,
 				scaleY=1,
 				scaleZ=1,
@@ -60,9 +59,9 @@ var contentView = Marionette.ItemView.extend({
 				cY=(clickSpots[0][1] + clickSpots[1][1] + clickSpots[2][1] + clickSpots[3][1])/4;
 			var corners=[];
 				corners.push({x:clickSpots[0][0],y:clickSpots[0][1],u:0,v:0});
-				corners.push({x:clickSpots[1][0],y:clickSpots[1][1],u:width2,v:0});
-				corners.push({x:clickSpots[2][0],y:clickSpots[2][1],u:width2,v:height2});
-				corners.push({x:clickSpots[3][0],y:clickSpots[3][1],u:0,v:height2});
+				corners.push({x:clickSpots[1][0],y:clickSpots[1][1],u:width,v:0});
+				corners.push({x:clickSpots[2][0],y:clickSpots[2][1],u:width,v:height});
+				corners.push({x:clickSpots[3][0],y:clickSpots[3][1],u:0,v:height});
 			this.draw(corners);
 			$(".menuButton").removeClass("active");
 			$("#downloadButton").addClass("active");
@@ -89,9 +88,26 @@ var contentView = Marionette.ItemView.extend({
 		this.context.strokeStyle = "green";
 		this.context.strokeRect(corners[0].x - 2, corners[0].y - 2, 4, 4);
     },
+	resize:function(){
+		var that=this;
+			that.canvas.width=parseInt($(".content").width());
+			that.canvas.height=parseInt($(".content").height());
+			that.draw();
+	},
 	draw:function(corners){
 		var bg=document.getElementById("bg");
-		this.context.drawImage(bg, 0, 0,parseInt($("#bg").width()),parseInt($("#bg").height()));
+		var ratio=$("#bg").width()/$("#bg").height();
+		var w=Math.min(parseInt($("#bg").width()), this.canvas.width);
+		if(w/ratio>this.canvas.height){
+			console.debug("here!");
+			w=this.canvas.height*ratio;
+		}
+		var h=w/ratio;
+		this.canvas.width=w;
+		this.canvas.height=h;
+		this.canvas.style.width=w+"px";
+		this.canvas.style.height=h+"px";
+		this.context.drawImage(bg, 0, 0,w,h);
 		if(corners && corners.length){
 			this.drawScreen(document.getElementById("canv").getContext("2d"),document.getElementById("overlay"),corners);
 		}
@@ -139,10 +155,14 @@ var contentView = Marionette.ItemView.extend({
 		fr.onload=function(e){
 			$div.attr("src",e.target.result);
 			if(id=="bg"){
+				that.canvas.width=parseInt($(".content").width());
+				that.canvas.height=parseInt($(".content").height());
+				$("#blur").attr("src",e.target.result);
 				$(".menuButton").removeClass("active");
 				$("#overlayFileButton").addClass("active").removeClass("disabled");
 			}else if(id=="overlay"){
 				$("#pointer").show();
+				$("#overlayFileButton").removeClass("disableClick");
 			}else{
 				$(".menuButton").removeClass("active");
 			}

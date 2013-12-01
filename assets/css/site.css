@@ -2306,25 +2306,51 @@ body {
 .content {
   position: absolute;
   top: 0;
-  bottom: 10%;
+  bottom: 0;
   left: 0;
   right: 0;
+  width: 100%;
+  height: 100%;
   background: #fff;
   overflow: hidden;
+  text-align: center;
 }
-/* line 22, ../sass/site.scss */
+/* line 25, ../sass/site.scss */
 .content #bg {
-  height: 100%;
-  margin: 0 auto;
-}
-/* line 26, ../sass/site.scss */
-.content #overlay {
+  visibility: hidden;
   position: absolute;
   top: 0;
-  z-index: 2;
+  left: 0;
+}
+/* line 31, ../sass/site.scss */
+.content #blur {
+  -webkit-filter: blur(10px);
+  margin: 0 auto;
+  position: absolute;
+  top: -25px;
+  left: -25px;
+  width: 110%;
+  height: 110%;
+}
+/* line 40, ../sass/site.scss */
+.content #canv {
+  z-index: 1;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  box-shadow: #007eff 0px 0px 10px;
+}
+/* line 49, ../sass/site.scss */
+.content #overlay {
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-/* line 32, ../sass/site.scss */
+/* line 56, ../sass/site.scss */
 .verticalfixer {
   display: inline-block;
   height: 100%;
@@ -2333,7 +2359,7 @@ body {
   margin-right: -1px;
 }
 
-/* line 39, ../sass/site.scss */
+/* line 63, ../sass/site.scss */
 .menu {
   position: absolute;
   right: 0;
@@ -2342,24 +2368,24 @@ body {
   z-index: 2;
   text-align: center;
 }
-/* line 46, ../sass/site.scss */
+/* line 70, ../sass/site.scss */
 .menu #bgFileUpload, .menu #overlayFileUpload {
   display: none;
 }
-/* line 49, ../sass/site.scss */
+/* line 73, ../sass/site.scss */
 .menu .logoWrap {
   vertical-align: bottom;
   float: left;
   margin-top: 2% !important;
 }
-/* line 53, ../sass/site.scss */
+/* line 77, ../sass/site.scss */
 .menu .logoWrap .logo {
   font-size: 2em;
   vertical-align: bottom;
   height: 1.4em;
   color: #007eff;
 }
-/* line 58, ../sass/site.scss */
+/* line 82, ../sass/site.scss */
 .menu .logoWrap .logo .logo-arrow {
   display: inline-block;
   position: relative;
@@ -2367,7 +2393,7 @@ body {
   overflow: hidden;
   top: -.5em;
 }
-/* line 67, ../sass/site.scss */
+/* line 91, ../sass/site.scss */
 .menu .menuButtonWrap {
   text-decoration: none;
   margin: 1%;
@@ -2375,7 +2401,7 @@ body {
   position: relative;
   display: inline-block;
 }
-/* line 73, ../sass/site.scss */
+/* line 97, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton {
   background: #007eff;
   color: white;
@@ -2391,28 +2417,28 @@ body {
   text-align: center;
   vertical-align: middle;
 }
-/* line 87, ../sass/site.scss */
+/* line 111, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton .fa {
   position: relative;
   top: .1em;
 }
-/* line 91, ../sass/site.scss */
+/* line 115, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 }
-/* line 96, ../sass/site.scss */
+/* line 120, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton:focus, .menu .menuButtonWrap .menuButton:active {
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 }
-/* line 101, ../sass/site.scss */
+/* line 125, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton.active {
   background: #00cc1e;
 }
-/* line 104, ../sass/site.scss */
+/* line 128, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton .arrow {
   position: absolute;
   top: 50%;
@@ -2427,7 +2453,7 @@ body {
   -webkit-transition: -webkit-transform .5s;
 }
 
-/* line 120, ../sass/site.scss */
+/* line 144, ../sass/site.scss */
 #div {
   width: 800px;
   height: 400px;
