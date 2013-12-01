@@ -6,10 +6,23 @@ var contentView = Marionette.ItemView.extend({
 		"change #overlayFileUpload":"overlayUpload",
 		"click #bgFileButton":"bgButton",
 		"click #overlayFileButton":"overlayButton",
+		"click #downloadButton":"downloadButton",
 		"click #canv":"positionOverlay",
 	},
-	bgButton:function(){$("#bgFileUpload").click();},
-	overlayButton:function(){$("#overlayFileUpload").click();},
+	bgButton:function(e){$("#bgFileUpload").click();},
+	overlayButton:function(e){
+		if($(e.target).hasClass("disabled")){
+			e.preventDefault();
+		}else{
+			$("#overlayFileUpload").click();
+		}
+	},
+	downloadButton:function(e){
+		if($(e.srcElement).hasClass("disabled")){
+			e.preventDefault();
+			e.stopPropagation();
+		}
+	},
 	onShow: function(){
 		bob=this;
 		var that=this;
@@ -51,7 +64,13 @@ var contentView = Marionette.ItemView.extend({
 				corners.push({x:clickSpots[2][0],y:clickSpots[2][1],u:width2,v:height2});
 				corners.push({x:clickSpots[3][0],y:clickSpots[3][1],u:0,v:height2});
 			this.draw(corners);
+			$(".menuButton").removeClass("active");
+			$("#downloadButton").addClass("active");
 		}
+		var angle=45+90*(this.clickNum+1);
+		$("#pointer").css({
+			"-webkit-transform":"rotate("+angle+"deg)"
+		});
 		this.clickNum++;
 	},
 	drawCorners:function(corners){
@@ -76,6 +95,8 @@ var contentView = Marionette.ItemView.extend({
 		if(corners && corners.length){
 			this.drawScreen(document.getElementById("canv").getContext("2d"),document.getElementById("overlay"),corners);
 		}
+		var data=this.canvas.toDataURL("image/png");
+		$("#downloadButton").attr("href",data.replace("image/png", "image/octet-stream"));
 	},
 	drawScreen: function (ctx, texture, pts) {
 		var tris = [[0, 1, 2], [2, 3, 0]];
@@ -117,6 +138,14 @@ var contentView = Marionette.ItemView.extend({
 			div.onload=_.bind(this.draw,this);
 		fr.onload=function(e){
 			$div.attr("src",e.target.result);
+			if(id=="bg"){
+				$(".menuButton").removeClass("active");
+				$("#overlayFileButton").addClass("active").removeClass("disabled");
+			}else if(id=="overlay"){
+				$("#pointer").show();
+			}else{
+				$(".menuButton").removeClass("active");
+			}
 		}
 		fr.readAsDataURL(file);
 	},

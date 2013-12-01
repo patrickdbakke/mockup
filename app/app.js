@@ -1,6 +1,5 @@
 var app = new Backbone.Marionette.Application();
 app.addRegions({
-	// menu: "#menu",
 	content: "#content",
 });
 app.router = Backbone.Router.extend({
@@ -10,7 +9,6 @@ app.router = Backbone.Router.extend({
 });
 app.routes = new app.router();
 app.routes.on("route:default",function(actions){
-	// app.menu.show(new menuView);
 	app.content.show(new contentView);
 });
 app.start=function(){

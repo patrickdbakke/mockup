@@ -14,8 +14,8 @@ body{
 .content{
 	position:absolute;
 	top:0;
-	bottom:0;
-	left:10%;
+	bottom:10%;
+	left:0;
 	right:0;
 	background:#fff;
 	overflow:hidden;
@@ -32,43 +32,62 @@ body{
 .verticalfixer{
 	display:inline-block;
 	height:100%;
-	width:1px;
 	vertical-align:middle;
+	width:1px;
+	margin-right:-1px;
 }
 .menu{
 	position:absolute;
-	top:0;
+	right:0;
 	left:0;
 	bottom:0;
-	width:10%;
-	background:#fcfcfc;
 	z-index:2;
-	-webkit-box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 6px;
-	-moz-box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 6px;
-	box-shadow: rgba(0, 0, 0, 0.5) 1px 1px 6px;
+	text-align:center;
 	#bgFileUpload,#overlayFileUpload{
 		display:none;
 	}
+	.logoWrap{
+		vertical-align:bottom;
+		float:left;
+		margin-top:2% !important;
+		.logo{
+			font-size:2em;
+			vertical-align: bottom;
+			height: 1.4em;
+			color:$brandBlue;
+			.logo-arrow{
+				display:inline-block;
+				position: relative;
+				height: .5em;
+				overflow: hidden;
+				top: -.5em;
+			}
+		}
+	}
 	.menuButtonWrap{
-		margin:0;
+		text-decoration:none;
+		margin:1%;
 		padding:0;
-		width:100%;
-		height:33.33%;
 		position:relative;
+		display:inline-block;
 		.menuButton{
+			background: $brandBlue;
+			color: white;
 			cursor:pointer;
-			position:absolute;
-			border-radius:3px;
+			width:2em;
+			height:2em;
+			font-size:2em;
+			display:inline-block;
+			border-radius:100px;
 			-webkit-box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
 			-moz-box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
 			box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
-			top:5px;
-			bottom:5px;
-			right:5px;
-			left:5px;
 			text-align:center;
 			vertical-align:middle;
-			display:table-cell;
+			.fa{
+				position: relative;
+				top: .1em;
+			}
 			&:hover{
 				-webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 				-moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
@@ -78,10 +97,22 @@ body{
 				-webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 				-moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 				box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
-				top:8px;
-				left:8px;
-				right:8px;
-				bottom:8px;
+			}
+			&.active{
+				background:$green;
+			}
+			.arrow{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-top: -.5em;
+				margin-left: -2em;
+				font-size: .4em;
+				-webkit-transform-origin: 225% 50%;
+				-webkit-transform: rotate(45deg);
+				color: aliceblue;
+				display:none;
+				-webkit-transition: -webkit-transform .5s;
 			}
 		}
 	}
