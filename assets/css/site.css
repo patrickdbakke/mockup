@@ -2518,7 +2518,7 @@ body.step4 #downloadButton {
 }
 /* line 202, ../sass/site.scss */
 .content .stepButton .imgWrap img {
-  max-width: 100%;
+  width: 100%;
 }
 /* line 207, ../sass/site.scss */
 .content .stepButton .imgAbout .imgTitle {
