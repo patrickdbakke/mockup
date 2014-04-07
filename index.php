@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-		<title>Mobilify</title>
+		<title>mockup</title>
 		<link rel="stylesheet" type="text/css" href="/assets/css/site.css" />
 		<script type="text/javascript" src="/assets/js/jquery.min.js" id="jquery"></script>
 		<script type="text/javascript" src="/assets/js/modernizr-2.6.2.min.js"></script>

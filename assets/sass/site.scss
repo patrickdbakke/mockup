@@ -4,6 +4,7 @@
 @import "shared/colors";
 body{
 	font-family:"OpenSansLight",sans,sans-serif;;
+	background:$brandBlue;
 }
 
 
@@ -19,7 +20,6 @@ body{
 	right:0;
 	width:100%;
 	height:100%;
-	background:#fff;
 	overflow:hidden;
 	text-align: center;
 	#bg{
@@ -44,7 +44,7 @@ body{
 		width:100%;
 		height:100%;
 		vertical-align:middle;
-		box-shadow:$brandBlue 0px 0px 10px ;
+		box-shadow:$white 0px 0px 10px ;
 	}
 	#overlay{
 		visibility:hidden;
@@ -78,7 +78,7 @@ body{
 			font-size:2em;
 			vertical-align: bottom;
 			height: 1.4em;
-			color:$brandBlue;
+			color:$white;
 			.logo-arrow{
 				display:inline-block;
 				position: relative;
@@ -95,8 +95,8 @@ body{
 		position:relative;
 		display:inline-block;
 		.menuButton{
-			background: $brandBlue;
-			color: white;
+			background: $white;
+			color: $brandBlue;
 			cursor:pointer;
 			width:2em;
 			height:2em;
@@ -124,6 +124,7 @@ body{
 			}
 			&.active{
 				background:$green;
+				color:$white;
 			}
 			.arrow{
 				position: absolute;

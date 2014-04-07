@@ -2294,15 +2294,16 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 /* line 5, ../sass/site.scss */
 body {
   font-family: "OpenSansLight",sans,sans-serif;
+  background: #007eff;
 }
 
-/* line 10, ../sass/site.scss */
+/* line 11, ../sass/site.scss */
 #content {
   width: 100%;
   height: 100%;
 }
 
-/* line 14, ../sass/site.scss */
+/* line 15, ../sass/site.scss */
 .content {
   position: absolute;
   top: 0;
@@ -2311,7 +2312,6 @@ body {
   right: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
   overflow: hidden;
   text-align: center;
 }
@@ -2340,7 +2340,7 @@ body {
   width: 100%;
   height: 100%;
   vertical-align: middle;
-  box-shadow: #007eff 0px 0px 10px;
+  box-shadow: white 0px 0px 10px;
 }
 /* line 49, ../sass/site.scss */
 .content #overlay {
@@ -2383,7 +2383,7 @@ body {
   font-size: 2em;
   vertical-align: bottom;
   height: 1.4em;
-  color: #007eff;
+  color: white;
 }
 /* line 82, ../sass/site.scss */
 .menu .logoWrap .logo .logo-arrow {
@@ -2403,8 +2403,8 @@ body {
 }
 /* line 97, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton {
-  background: #007eff;
-  color: white;
+  background: white;
+  color: #007eff;
   cursor: pointer;
   width: 2em;
   height: 2em;
@@ -2437,8 +2437,9 @@ body {
 /* line 125, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton.active {
   background: #00cc1e;
+  color: white;
 }
-/* line 128, ../sass/site.scss */
+/* line 129, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton .arrow {
   position: absolute;
   top: 50%;
@@ -2453,7 +2454,7 @@ body {
   -webkit-transition: -webkit-transform .5s;
 }
 
-/* line 144, ../sass/site.scss */
+/* line 145, ../sass/site.scss */
 #div {
   width: 800px;
   height: 400px;

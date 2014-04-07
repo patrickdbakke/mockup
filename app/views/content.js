@@ -8,6 +8,35 @@ var contentView = Marionette.ItemView.extend({
 		"click #overlayFileButton":"overlayButton",
 		"click #downloadButton":"downloadButton",
 		"click #canv":"positionOverlay",
+		"drop #canv":"dragDrop",
+		"dragover #canv":"dragOver"
+	},
+    initialize: function() { },
+	dragOver: function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	},
+	dragDrop:function(e){
+		e.preventDefault();
+		e.stopPropagation();
+		console.debug(e.originalEvent);
+		if(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files && e.originalEvent.dataTransfer.files.length>0){
+			console.debug(this.inside([e.originalEvent.offsetX,e.originalEvent.offsetY],this.clickSpots),[e.originalEvent.offsetX,e.originalEvent.offsetY],this.clickSpots);
+			if($("#overlayFileButton").hasClass("disabled") || !this.inside([e.originalEvent.offsetX,e.originalEvent.offsetY],this.clickSpots)){
+				this.loadImageToDiv(e.originalEvent.dataTransfer.files[0],"bg");
+			}else{
+				this.loadImageToDiv(e.originalEvent.dataTransfer.files[0],"overlay");
+			}
+		}
+	},
+	inside:function (p, vs) {
+		var ret = false;
+		for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
+			if (((vs[i][1] > p[1]) != (vs[j][1] > p[1]))
+				&& (p[0] < (vs[j][0] - vs[i][0]) * (p[1] - vs[i][1]) / (vs[j][1] - vs[i][1]) + vs[i][0]))
+				ret = !ret;
+		}
+		return ret;
 	},
 	bgButton:function(e){$("#bgFileUpload").click();},
 	overlayButton:function(e){
@@ -62,6 +91,7 @@ var contentView = Marionette.ItemView.extend({
 				corners.push({x:clickSpots[1][0],y:clickSpots[1][1],u:width,v:0});
 				corners.push({x:clickSpots[2][0],y:clickSpots[2][1],u:width,v:height});
 				corners.push({x:clickSpots[3][0],y:clickSpots[3][1],u:0,v:height});
+			this.corners=corners;
 			this.draw(corners);
 			$(".menuButton").removeClass("active");
 			$("#downloadButton").addClass("active");
@@ -94,7 +124,7 @@ var contentView = Marionette.ItemView.extend({
 			that.canvas.height=parseInt($(".content").height());
 			that.draw();
 	},
-	draw:function(corners){
+	draw:function(){
 		var bg=document.getElementById("bg");
 		var ratio=$("#bg").width()/$("#bg").height();
 		var w=Math.min(parseInt($("#bg").width()), this.canvas.width);
@@ -108,8 +138,8 @@ var contentView = Marionette.ItemView.extend({
 		this.canvas.style.width=w+"px";
 		this.canvas.style.height=h+"px";
 		this.context.drawImage(bg, 0, 0,w,h);
-		if(corners && corners.length){
-			this.drawScreen(document.getElementById("canv").getContext("2d"),document.getElementById("overlay"),corners);
+		if(this.corners && this.corners.length){
+			this.drawScreen(document.getElementById("canv").getContext("2d"),document.getElementById("overlay"),this.corners);
 		}
 		var data=this.canvas.toDataURL("image/png");
 		$("#downloadButton").attr("href",data.replace("image/png", "image/octet-stream"));
@@ -168,8 +198,5 @@ var contentView = Marionette.ItemView.extend({
 			}
 		}
 		fr.readAsDataURL(file);
-	},
-    initialize: function() {
-		
-    }
+	}
 });
