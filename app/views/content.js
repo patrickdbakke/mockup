@@ -94,6 +94,10 @@ var contentView = Marionette.ItemView.extend({
 		this.loadImage(url,"bg");
 	},
 	positionOverlay:function(e){
+		if(typeof e.offsetX=="undefined"){
+			e.offsetX = e.pageX-$(e.target).offset().left;
+			e.offsetY = e.pageY-$(e.target).offset().top;
+		}
 		if($("#overlayButton").hasClass("disableClick"))
 			return false;
 		var that=this;
@@ -126,7 +130,10 @@ var contentView = Marionette.ItemView.extend({
 		}
 		var angle=45+90*(this.clickNum+1);
 		$("#pointer").css({
-			"-webkit-transform":"rotate("+angle+"deg)"
+			"-webkit-transform":"rotate("+angle+"deg)",
+			"-moz-transform":"rotate("+angle+"deg)",
+			"-o-transform":"rotate("+angle+"deg)",
+			"transform":"rotate("+angle+"deg)"
 		});
 		this.clickNum++;
 	},

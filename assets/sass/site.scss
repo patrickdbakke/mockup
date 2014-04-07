@@ -85,6 +85,7 @@ body{
 	}
 	#blur{
 		-webkit-filter: blur(10px);
+		-moz-filter: blur(10px);
 		margin:0 auto;
 		position:absolute;
 		top:-25px;
@@ -305,10 +306,18 @@ body{
 				margin-left: -2em;
 				font-size: .4em;
 				-webkit-transform-origin: 225% 50%;
-				-webkit-transform: rotate(45deg);
+				-moz-transform-origin: 225% 50%;
+				-o-transform: rotate(45deg);
+				transform: rotate(45deg);
+				-moz-transform: rotate(45deg);
+				-o-transform: rotate(45deg);
+				transform: rotate(45deg);
 				color: aliceblue;
 				display:none;
 				-webkit-transition: -webkit-transform .5s;
+				-moz-transition: -moz-transform .5s;
+				-o-transition: -o-transform .5s;
+				transition: transform .5s;
 			}
 		}
 	}
