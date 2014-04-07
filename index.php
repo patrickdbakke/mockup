@@ -10,7 +10,6 @@
 		<script type="text/javascript" src="/assets/js/underscore.min.js"></script>
 		<script type="text/javascript" src="/assets/js/backbone.min.js"></script>
 		<script type="text/javascript" src="/assets/js/backbone.marionette.min.js"></script>
-		<script type="text/javascript" src="/assets/js/slick.min.js"></script>
 	</head>
 	<body class="">
 		<div id="content"></div>
