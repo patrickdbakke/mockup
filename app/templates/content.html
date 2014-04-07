@@ -10,7 +10,7 @@
 		</div>
 	</a>
 	<div class="menuButtonWrap">
-		<div id="bgFileButton" class="menuButton active">
+		<div id="bgFileButton" class="menuButton">
 			<div class="verticalfixer"></div><i class="fa fa-picture-o"></i>
 		</div>
 	</div>
@@ -21,20 +21,90 @@
 		</div>
 	</div>
 	<div class="menuButtonWrap">
-		<a id="downloadButton" class="menuButton disabled"  href="" download="mockUp.png" target="_blank">
+		<a id="downloadButton" class="download menuButton disabled"  href="" download="mockUp.png" target="_blank">
 			<div class="verticalfixer"></div><i class="fa fa-download"></i>
 		</a>
 	</div>
-	<div class="menuButtonWrap" style="display:none">
-		<div id="helpButton"  class="menuButton">
-			<div class="verticalfixer"></div><i class="fa fa-question"></i>
-		</div>
-	</div>
 </div>
-<div class="content">
-	<canvas id="canv"></canvas>
-	<div class="verticalfixer"></div>
+<div class="content" id="content">
 	<img id="blur"/>
 	<img id="bg"/>
+	<div class="step2 stepBlock ">
+		<div class="inlineb">
+			<span class="stepTitle">
+				Step 2
+			</span>
+			<div id="overlayFileUploadButton" class="stepButton">
+				<div class="imgWrap">
+					<div class="fa fa-upload"></div>
+					<div class="verticalfixer"></div>
+				</div>
+				<div class="imgAbout">
+					<div class="imgTitle">
+						Upload yours!
+					</div>
+				</div>
+			</div>
+			<span class="stepInstruction">
+				Select your screenshot
+			</span>
+		</div>
+		<div class="verticalfixer"></div>
+	</div>
+	<div class="step3">
+		<div class="inlineb">
+			<span class="stepTitle step3">
+				Step 3
+			</span>
+			<a href="" class="stepTitle step4 download">
+				Download your Mockup!
+			</a>
+			<div>
+				<canvas id="canv"></canvas>
+			</div>
+			<span class="stepInstruction step3">
+				Position your screenshot. Click on the each of four corners of the screen, starting with the top-left.
+			</span>
+		</div>
+	</div>
 	<img id="overlay" style="display:none;"/>
+	<div class="stepBlock step1">
+		<div id="bgSelector">
+			<div class="stepTitle">
+				Step 1
+			</div>
+			<ul>
+				<li id="bgFileUploadButton" class="stepButton">
+					<div class="imgWrap">
+						<div class="fa fa-upload"></div>
+						<div class="verticalfixer"></div>
+					</div>
+					<div class="imgAbout">
+						<div class="imgTitle">
+							Upload your own!
+						</div>
+					</div>
+				</li>
+				<% _.each(bgs,function(bg){%>			
+					<li class="demoImage stepButton" data-img="<%= bg.fileURI %>">
+						<div class="imgWrap">
+							<img src="<%= bg.thumbURI%>"/>
+							<div class="verticalfixer"></div>
+						</div>
+						<div class="imgAbout">
+							<div class="imgTitle">
+								<%= bg.name %>
+							</div>
+							<a href="<%= bg.attributionLink%>" target="_blank">by <%= bg.attributionText%></a>
+						</div>
+					</li>
+				<%})%>
+			</ul>
+			<span class="stepInstruction">
+				Select a background, or upload your own!
+			</span>
+		</div>
+		<div class="verticalfixer"></div>
+	</div>
+	<div class="verticalfixer"></div>
 </div>

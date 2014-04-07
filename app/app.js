@@ -9,7 +9,8 @@ app.router = Backbone.Router.extend({
 });
 app.routes = new app.router();
 app.routes.on("route:default",function(actions){
-	var content=new contentView();
+	var menu=new menuModel();
+	var content=new contentView({model:menu});
 	app.content.show(content);
 	$(window).resize(function(){
 		content.resize();

@@ -12,6 +12,59 @@ body{
 	width: 100%;
 	height: 100%;
 }
+body{
+	.step1, .step2, .step3,.step4{
+		display:none;
+	}
+	&.step1{
+		.step1{
+			display:block;
+		}
+		#bgFileButton{
+			background:$green;
+			color:$white;
+		}
+	}
+	&.step2{
+		.step2{
+			display:block;
+		}
+		#overlayFileButton{
+			background:$green;
+			color:$white;
+		}
+	}
+	&.step3{
+		.step3{
+			display:block;
+			.step4{
+				display:none;
+			}
+			.step3{
+				display:block;
+			}
+		}
+		#overlayFileButton{
+			background:$green;
+			color:$white;
+		}
+	}
+	&.step4{
+		div.step3{
+			display:block;
+			.step3{
+				display:none;
+			}
+			.step4{
+				display:block;
+			}
+		}
+		#downloadButton{
+			background:$green;
+			color:$white;
+		}
+	}
+}
 .content{
 	position:absolute;
 	top:0;
@@ -27,6 +80,8 @@ body{
 		position:absolute;
 		top:0;
 		left:0;
+		max-height:80%;
+		max-width:95%;
 	}
 	#blur{
 		-webkit-filter: blur(10px);
@@ -52,6 +107,94 @@ body{
 		top:0;
 		left:0;
 	}
+	.stepTitle{
+		margin:.5em;
+		color:white;
+		font-size:3em;
+		display:inline-block;
+		position:relative;
+		text-decoration:none;
+	}
+	.stepInstruction{
+		color:$white;
+		margin:1em;
+		display:inline-block;
+		position:relative;
+	}
+	#bgSelector{
+		width:60%;
+		max-width:50em;
+		border-radius:1em;
+		display:inline-block;
+		padding:2em;
+		position:relative;
+		z-index:3;
+		vertical-align:middle;
+		ul{
+			min-width:100%;
+			text-align:center;
+		}
+	}
+	.inlineb{
+		display:inline-block;
+		vertical-align:middle;
+	}
+	.stepButton{
+		cursor:pointer;
+		margin:.5em;
+		background:$white;
+		color:$blue;
+		display:inline-block;
+		width:13em;
+		height:18em;
+		padding:1em;
+		vertical-align:top;
+		-webkit-box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
+		-moz-box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
+		box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
+		border-radius:.5em;
+		&#overlayFileUploadButton{
+			display:block;
+		}
+		.imgWrap{
+			vertical-align:middle;
+			width:100%;
+			height:10em;
+			display:inline-block;
+			.fa{
+				width:1em;
+				height:1em;
+				padding:.5em;
+				display:inline-block;
+				border-radius:2000em;
+				font-size:3em;
+				background:$blue;
+				color:$white;
+				vertical-align:middle;
+				text-align:center;
+			}
+			img{
+				max-width:100%;
+			}
+		}
+		.imgAbout{
+			.imgTitle{
+				font-size:1.4em;
+				margin: .5em;
+			}
+			a{
+				color:inherit;
+			}
+		}
+	}
+	.stepBlock{
+		width:100%;
+		height:100%;
+		position:absolute;
+		top:0;
+		left:0;
+		vertical-align:middle;
+	}
 }
 .verticalfixer{
 	display:inline-block;
@@ -70,9 +213,11 @@ body{
 	#bgFileUpload,#overlayFileUpload{
 		display:none;
 	}
-	.logoWrap{
+	a.logoWrap{
 		vertical-align:bottom;
-		float:left;
+		position:absolute;
+		left:0;
+		bottom:0;
 		margin-top:2% !important;
 		.logo{
 			font-size:2em;

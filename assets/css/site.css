@@ -2303,7 +2303,64 @@ body {
   height: 100%;
 }
 
-/* line 15, ../sass/site.scss */
+/* line 16, ../sass/site.scss */
+body .step1, body .step2, body .step3, body .step4 {
+  display: none;
+}
+/* line 20, ../sass/site.scss */
+body.step1 .step1 {
+  display: block;
+}
+/* line 23, ../sass/site.scss */
+body.step1 #bgFileButton {
+  background: #00cc1e;
+  color: white;
+}
+/* line 29, ../sass/site.scss */
+body.step2 .step2 {
+  display: block;
+}
+/* line 32, ../sass/site.scss */
+body.step2 #overlayFileButton {
+  background: #00cc1e;
+  color: white;
+}
+/* line 38, ../sass/site.scss */
+body.step3 .step3 {
+  display: block;
+}
+/* line 40, ../sass/site.scss */
+body.step3 .step3 .step4 {
+  display: none;
+}
+/* line 43, ../sass/site.scss */
+body.step3 .step3 .step3 {
+  display: block;
+}
+/* line 47, ../sass/site.scss */
+body.step3 #overlayFileButton {
+  background: #00cc1e;
+  color: white;
+}
+/* line 53, ../sass/site.scss */
+body.step4 div.step3 {
+  display: block;
+}
+/* line 55, ../sass/site.scss */
+body.step4 div.step3 .step3 {
+  display: none;
+}
+/* line 58, ../sass/site.scss */
+body.step4 div.step3 .step4 {
+  display: block;
+}
+/* line 62, ../sass/site.scss */
+body.step4 #downloadButton {
+  background: #00cc1e;
+  color: white;
+}
+
+/* line 68, ../sass/site.scss */
 .content {
   position: absolute;
   top: 0;
@@ -2315,14 +2372,16 @@ body {
   overflow: hidden;
   text-align: center;
 }
-/* line 25, ../sass/site.scss */
+/* line 78, ../sass/site.scss */
 .content #bg {
   visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
+  max-height: 80%;
+  max-width: 95%;
 }
-/* line 31, ../sass/site.scss */
+/* line 86, ../sass/site.scss */
 .content #blur {
   -webkit-filter: blur(10px);
   margin: 0 auto;
@@ -2332,7 +2391,7 @@ body {
   width: 110%;
   height: 110%;
 }
-/* line 40, ../sass/site.scss */
+/* line 95, ../sass/site.scss */
 .content #canv {
   z-index: 1;
   position: relative;
@@ -2342,15 +2401,114 @@ body {
   vertical-align: middle;
   box-shadow: white 0px 0px 10px;
 }
-/* line 49, ../sass/site.scss */
+/* line 104, ../sass/site.scss */
 .content #overlay {
   visibility: hidden;
   position: absolute;
   top: 0;
   left: 0;
 }
+/* line 110, ../sass/site.scss */
+.content .stepTitle {
+  margin: .5em;
+  color: white;
+  font-size: 3em;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+}
+/* line 118, ../sass/site.scss */
+.content .stepInstruction {
+  color: white;
+  margin: 1em;
+  display: inline-block;
+  position: relative;
+}
+/* line 124, ../sass/site.scss */
+.content #bgSelector {
+  width: 60%;
+  max-width: 50em;
+  border-radius: 1em;
+  display: inline-block;
+  padding: 2em;
+  position: relative;
+  z-index: 3;
+  vertical-align: middle;
+}
+/* line 133, ../sass/site.scss */
+.content #bgSelector ul {
+  min-width: 100%;
+  text-align: center;
+}
+/* line 138, ../sass/site.scss */
+.content .inlineb {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 142, ../sass/site.scss */
+.content .stepButton {
+  cursor: pointer;
+  margin: .5em;
+  background: white;
+  color: #007eff;
+  display: inline-block;
+  width: 13em;
+  height: 18em;
+  padding: 1em;
+  vertical-align: top;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
+  -moz-box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
+  box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
+  border-radius: .5em;
+}
+/* line 156, ../sass/site.scss */
+.content .stepButton#overlayFileUploadButton {
+  display: block;
+}
+/* line 159, ../sass/site.scss */
+.content .stepButton .imgWrap {
+  vertical-align: middle;
+  width: 100%;
+  height: 10em;
+  display: inline-block;
+}
+/* line 164, ../sass/site.scss */
+.content .stepButton .imgWrap .fa {
+  width: 1em;
+  height: 1em;
+  padding: .5em;
+  display: inline-block;
+  border-radius: 2000em;
+  font-size: 3em;
+  background: #007eff;
+  color: white;
+  vertical-align: middle;
+  text-align: center;
+}
+/* line 176, ../sass/site.scss */
+.content .stepButton .imgWrap img {
+  max-width: 100%;
+}
+/* line 181, ../sass/site.scss */
+.content .stepButton .imgAbout .imgTitle {
+  font-size: 1.4em;
+  margin: .5em;
+}
+/* line 185, ../sass/site.scss */
+.content .stepButton .imgAbout a {
+  color: inherit;
+}
+/* line 190, ../sass/site.scss */
+.content .stepBlock {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  vertical-align: middle;
+}
 
-/* line 56, ../sass/site.scss */
+/* line 199, ../sass/site.scss */
 .verticalfixer {
   display: inline-block;
   height: 100%;
@@ -2359,7 +2517,7 @@ body {
   margin-right: -1px;
 }
 
-/* line 63, ../sass/site.scss */
+/* line 206, ../sass/site.scss */
 .menu {
   position: absolute;
   right: 0;
@@ -2368,32 +2526,34 @@ body {
   z-index: 2;
   text-align: center;
 }
-/* line 70, ../sass/site.scss */
+/* line 213, ../sass/site.scss */
 .menu #bgFileUpload, .menu #overlayFileUpload {
   display: none;
 }
-/* line 73, ../sass/site.scss */
-.menu .logoWrap {
+/* line 216, ../sass/site.scss */
+.menu a.logoWrap {
   vertical-align: bottom;
-  float: left;
+  position: absolute;
+  left: 0;
+  bottom: 0;
   margin-top: 2% !important;
 }
-/* line 77, ../sass/site.scss */
-.menu .logoWrap .logo {
+/* line 222, ../sass/site.scss */
+.menu a.logoWrap .logo {
   font-size: 2em;
   vertical-align: bottom;
   height: 1.4em;
   color: white;
 }
-/* line 82, ../sass/site.scss */
-.menu .logoWrap .logo .logo-arrow {
+/* line 227, ../sass/site.scss */
+.menu a.logoWrap .logo .logo-arrow {
   display: inline-block;
   position: relative;
   height: .5em;
   overflow: hidden;
   top: -.5em;
 }
-/* line 91, ../sass/site.scss */
+/* line 236, ../sass/site.scss */
 .menu .menuButtonWrap {
   text-decoration: none;
   margin: 1%;
@@ -2401,7 +2561,7 @@ body {
   position: relative;
   display: inline-block;
 }
-/* line 97, ../sass/site.scss */
+/* line 242, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton {
   background: white;
   color: #007eff;
@@ -2417,29 +2577,29 @@ body {
   text-align: center;
   vertical-align: middle;
 }
-/* line 111, ../sass/site.scss */
+/* line 256, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton .fa {
   position: relative;
   top: .1em;
 }
-/* line 115, ../sass/site.scss */
+/* line 260, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 }
-/* line 120, ../sass/site.scss */
+/* line 265, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton:focus, .menu .menuButtonWrap .menuButton:active {
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 }
-/* line 125, ../sass/site.scss */
+/* line 270, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton.active {
   background: #00cc1e;
   color: white;
 }
-/* line 129, ../sass/site.scss */
+/* line 274, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton .arrow {
   position: absolute;
   top: 50%;
@@ -2454,7 +2614,7 @@ body {
   -webkit-transition: -webkit-transform .5s;
 }
 
-/* line 145, ../sass/site.scss */
+/* line 290, ../sass/site.scss */
 #div {
   width: 800px;
   height: 400px;

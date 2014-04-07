@@ -1,13 +1,15 @@
-var bob;
 var contentView = Marionette.ItemView.extend({
 	template : "#contentTemplate",
 	events:{
 		"change #bgFileUpload":"bgUpload",
 		"change #overlayFileUpload":"overlayUpload",
 		"click #bgFileButton":"bgButton",
+		"click #bgFileUploadButton":"bgUploadButton",
 		"click #overlayFileButton":"overlayButton",
-		"click #downloadButton":"downloadButton",
+		"click #overlayFileUploadButton":"overlayUploadButton",
+		"click .download":"downloadButton",
 		"click #canv":"positionOverlay",
+		"click .demoImage":"selectBG",
 		"drop #canv":"dragDrop",
 		"dragover #canv":"dragOver"
 	},
@@ -19,9 +21,7 @@ var contentView = Marionette.ItemView.extend({
 	dragDrop:function(e){
 		e.preventDefault();
 		e.stopPropagation();
-		console.debug(e.originalEvent);
 		if(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files && e.originalEvent.dataTransfer.files.length>0){
-			console.debug(this.inside([e.originalEvent.offsetX,e.originalEvent.offsetY],this.clickSpots),[e.originalEvent.offsetX,e.originalEvent.offsetY],this.clickSpots);
 			if($("#overlayFileButton").hasClass("disabled") || !this.inside([e.originalEvent.offsetX,e.originalEvent.offsetY],this.clickSpots)){
 				this.loadImageToDiv(e.originalEvent.dataTransfer.files[0],"bg");
 			}else{
@@ -38,8 +38,14 @@ var contentView = Marionette.ItemView.extend({
 		}
 		return ret;
 	},
-	bgButton:function(e){$("#bgFileUpload").click();},
+	bgButton:function(e){
+		$("body").removeClass("step1 step2 step3 step4").addClass("step1");
+	},
+	bgUploadButton:function(e){$("#bgFileUpload").click();},
 	overlayButton:function(e){
+		$("body").removeClass("step1 step2 step3 step4").addClass("step2");
+	},
+	overlayUploadButton:function(e){
 		if($(e.target).hasClass("disabled")){
 			e.preventDefault();
 		}else{
@@ -53,8 +59,8 @@ var contentView = Marionette.ItemView.extend({
 		}
 	},
 	onShow: function(){
-		bob=this;
 		var that=this;
+		$("body").addClass("step1");
 		this.canvas = document.getElementById("canv");
 		if(this.canvas){
 			this.context = this.canvas.getContext("2d");
@@ -65,6 +71,15 @@ var contentView = Marionette.ItemView.extend({
 	bgUpload:function(e){
 		var file=$(e.target).get(0).files[0];
 		this.loadImageToDiv(file,"bg");
+	},
+	selectBG:function(e){
+		var $src=$(e.target || e.srcElement);
+		if($src.is("a"))
+			return;
+		if(!$src.hasClass("demoImage"))
+			$src=$src.parents(".demoImage");
+		var url=$src.data("img");
+		this.loadImage(url,"bg");
 	},
 	positionOverlay:function(e){
 		if($("#overlayButton").hasClass("disableClick"))
@@ -93,8 +108,9 @@ var contentView = Marionette.ItemView.extend({
 				corners.push({x:clickSpots[3][0],y:clickSpots[3][1],u:0,v:height});
 			this.corners=corners;
 			this.draw(corners);
-			$(".menuButton").removeClass("active");
-			$("#downloadButton").addClass("active");
+			$("body").removeClass("step1 step2 step3 step4").addClass("step4");
+		}else{
+			$("body").removeClass("step1 step2 step3 step4").addClass("step3");
 		}
 		var angle=45+90*(this.clickNum+1);
 		$("#pointer").css({
@@ -129,7 +145,6 @@ var contentView = Marionette.ItemView.extend({
 		var ratio=$("#bg").width()/$("#bg").height();
 		var w=Math.min(parseInt($("#bg").width()), this.canvas.width);
 		if(w/ratio>this.canvas.height){
-			console.debug("here!");
 			w=this.canvas.height*ratio;
 		}
 		var h=w/ratio;
@@ -142,7 +157,7 @@ var contentView = Marionette.ItemView.extend({
 			this.drawScreen(document.getElementById("canv").getContext("2d"),document.getElementById("overlay"),this.corners);
 		}
 		var data=this.canvas.toDataURL("image/png");
-		$("#downloadButton").attr("href",data.replace("image/png", "image/octet-stream"));
+		$(".download").attr("href",data.replace("image/png", "image/octet-stream"));
 	},
 	drawScreen: function (ctx, texture, pts) {
 		var tris = [[0, 1, 2], [2, 3, 0]];
@@ -183,20 +198,26 @@ var contentView = Marionette.ItemView.extend({
 		var div=document.getElementById(id);
 			div.onload=_.bind(this.draw,this);
 		fr.onload=function(e){
-			$div.attr("src",e.target.result);
-			if(id=="bg"){
-				that.canvas.width=parseInt($(".content").width());
-				that.canvas.height=parseInt($(".content").height());
-				$("#blur").attr("src",e.target.result);
-				$(".menuButton").removeClass("active");
-				$("#overlayFileButton").addClass("active").removeClass("disabled");
-			}else if(id=="overlay"){
-				$("#pointer").show();
-				$("#overlayFileButton").removeClass("disableClick");
-			}else{
-				$(".menuButton").removeClass("active");
-			}
+			that.loadImage(e.target.result,id);
 		}
 		fr.readAsDataURL(file);
+	},
+	loadImage:function(url,id){
+		var that=this;
+		var $div=$("#"+id);
+		$div.attr("src",url);
+		var div=document.getElementById(id);
+			div.onload=_.bind(this.draw,this);
+		if(id=="bg"){
+			that.canvas.width=parseInt($(".content").width());
+			that.canvas.height=parseInt($(".content").height());
+			$("#blur").attr("src",url);
+			$("#overlayFileButton").removeClass("disabled");
+			$("body").removeClass("step1 step2 step3 step4").addClass("step2");
+		}else if(id=="overlay"){
+			$("#pointer").show();
+			$("#overlayFileButton").removeClass("disableClick");
+			$("body").removeClass("step1 step2 step3 step4").addClass("step3");
+		}
 	}
 });
