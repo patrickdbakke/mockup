@@ -2425,9 +2425,8 @@ body.step4 #downloadButton {
   position: relative;
 }
 /* line 124, ../sass/site.scss */
-.content #bgSelector {
-  width: 60%;
-  max-width: 50em;
+.content .bgSelectors {
+  width: 48em;
   border-radius: 1em;
   display: inline-block;
   padding: 2em;
@@ -2435,18 +2434,50 @@ body.step4 #downloadButton {
   z-index: 3;
   vertical-align: middle;
 }
-/* line 133, ../sass/site.scss */
-.content #bgSelector ul {
+/* line 132, ../sass/site.scss */
+.content .bgSelectors ul {
   min-width: 100%;
   text-align: center;
+  max-height: 21em;
 }
-/* line 138, ../sass/site.scss */
+/* line 137, ../sass/site.scss */
+.content .bgSelectors .next, .content .bgSelectors .prev {
+  position: absolute;
+  top: 50%;
+}
+/* line 140, ../sass/site.scss */
+.content .bgSelectors .next div, .content .bgSelectors .prev div {
+  cursor: pointer;
+  color: #007eff;
+  border-radius: 1000em;
+  background: white;
+  height: 1em;
+  width: 1em;
+  font-size: 1.5em;
+  padding: .5em;
+  top: -1.25em;
+}
+/* line 152, ../sass/site.scss */
+.content .bgSelectors .next {
+  left: 100%;
+}
+/* line 155, ../sass/site.scss */
+.content .bgSelectors .prev {
+  right: 100%;
+}
+/* line 159, ../sass/site.scss */
+.content #bgSelectors {
+  overflow: hidden;
+}
+/* line 162, ../sass/site.scss */
 .content .inlineb {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 142, ../sass/site.scss */
+/* line 166, ../sass/site.scss */
 .content .stepButton {
+  float: left;
+  text-align: center;
   cursor: pointer;
   margin: .5em;
   background: white;
@@ -2461,18 +2492,18 @@ body.step4 #downloadButton {
   box-shadow: rgba(0, 0, 0, 0.4) 1px 1px 6px;
   border-radius: .5em;
 }
-/* line 156, ../sass/site.scss */
+/* line 182, ../sass/site.scss */
 .content .stepButton#overlayFileUploadButton {
   display: block;
 }
-/* line 159, ../sass/site.scss */
+/* line 185, ../sass/site.scss */
 .content .stepButton .imgWrap {
   vertical-align: middle;
   width: 100%;
   height: 10em;
   display: inline-block;
 }
-/* line 164, ../sass/site.scss */
+/* line 190, ../sass/site.scss */
 .content .stepButton .imgWrap .fa {
   width: 1em;
   height: 1em;
@@ -2485,20 +2516,20 @@ body.step4 #downloadButton {
   vertical-align: middle;
   text-align: center;
 }
-/* line 176, ../sass/site.scss */
+/* line 202, ../sass/site.scss */
 .content .stepButton .imgWrap img {
   max-width: 100%;
 }
-/* line 181, ../sass/site.scss */
+/* line 207, ../sass/site.scss */
 .content .stepButton .imgAbout .imgTitle {
   font-size: 1.4em;
   margin: .5em;
 }
-/* line 185, ../sass/site.scss */
+/* line 211, ../sass/site.scss */
 .content .stepButton .imgAbout a {
   color: inherit;
 }
-/* line 190, ../sass/site.scss */
+/* line 216, ../sass/site.scss */
 .content .stepBlock {
   width: 100%;
   height: 100%;
@@ -2508,7 +2539,7 @@ body.step4 #downloadButton {
   vertical-align: middle;
 }
 
-/* line 199, ../sass/site.scss */
+/* line 225, ../sass/site.scss */
 .verticalfixer {
   display: inline-block;
   height: 100%;
@@ -2517,7 +2548,7 @@ body.step4 #downloadButton {
   margin-right: -1px;
 }
 
-/* line 206, ../sass/site.scss */
+/* line 232, ../sass/site.scss */
 .menu {
   position: absolute;
   right: 0;
@@ -2526,11 +2557,11 @@ body.step4 #downloadButton {
   z-index: 2;
   text-align: center;
 }
-/* line 213, ../sass/site.scss */
+/* line 239, ../sass/site.scss */
 .menu #bgFileUpload, .menu #overlayFileUpload {
   display: none;
 }
-/* line 216, ../sass/site.scss */
+/* line 242, ../sass/site.scss */
 .menu a.logoWrap {
   vertical-align: bottom;
   position: absolute;
@@ -2538,14 +2569,14 @@ body.step4 #downloadButton {
   bottom: 0;
   margin-top: 2% !important;
 }
-/* line 222, ../sass/site.scss */
+/* line 248, ../sass/site.scss */
 .menu a.logoWrap .logo {
   font-size: 2em;
   vertical-align: bottom;
   height: 1.4em;
   color: white;
 }
-/* line 227, ../sass/site.scss */
+/* line 253, ../sass/site.scss */
 .menu a.logoWrap .logo .logo-arrow {
   display: inline-block;
   position: relative;
@@ -2553,7 +2584,7 @@ body.step4 #downloadButton {
   overflow: hidden;
   top: -.5em;
 }
-/* line 236, ../sass/site.scss */
+/* line 262, ../sass/site.scss */
 .menu .menuButtonWrap {
   text-decoration: none;
   margin: 1%;
@@ -2561,7 +2592,7 @@ body.step4 #downloadButton {
   position: relative;
   display: inline-block;
 }
-/* line 242, ../sass/site.scss */
+/* line 268, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton {
   background: white;
   color: #007eff;
@@ -2577,29 +2608,29 @@ body.step4 #downloadButton {
   text-align: center;
   vertical-align: middle;
 }
-/* line 256, ../sass/site.scss */
+/* line 282, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton .fa {
   position: relative;
   top: .1em;
 }
-/* line 260, ../sass/site.scss */
+/* line 286, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton:hover {
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 }
-/* line 265, ../sass/site.scss */
+/* line 291, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton:focus, .menu .menuButtonWrap .menuButton:active {
   -webkit-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   -moz-box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
   box-shadow: rgba(0, 0, 0, 0.6) 1px 1px 6px;
 }
-/* line 270, ../sass/site.scss */
+/* line 296, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton.active {
   background: #00cc1e;
   color: white;
 }
-/* line 274, ../sass/site.scss */
+/* line 300, ../sass/site.scss */
 .menu .menuButtonWrap .menuButton .arrow {
   position: absolute;
   top: 50%;
@@ -2614,7 +2645,7 @@ body.step4 #downloadButton {
   -webkit-transition: -webkit-transform .5s;
 }
 
-/* line 290, ../sass/site.scss */
+/* line 316, ../sass/site.scss */
 #div {
   width: 800px;
   height: 400px;

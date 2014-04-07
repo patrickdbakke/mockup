@@ -11,9 +11,21 @@ var contentView = Marionette.ItemView.extend({
 		"click #canv":"positionOverlay",
 		"click .demoImage":"selectBG",
 		"drop #canv":"dragDrop",
-		"dragover #canv":"dragOver"
+		"dragover #canv":"dragOver",
+		"click .next":"scrollNext",
+		"click .prev":"scrollPrev",
 	},
     initialize: function() { },
+	scrollNext:function(){
+		$("#bgSelectors").animate({
+			scrollLeft:"+="+($("#bgSelectors").find('.stepButton').first().outerWidth()/15*16*3)
+		},500);
+	},
+	scrollPrev:function(){
+		$("#bgSelectors").animate({
+			scrollLeft:"-="+($("#bgSelectors").find('.stepButton').first().outerWidth()/15*16*3)
+		},500);
+	},
 	dragOver: function(e) {
 		e.stopPropagation();
 		e.preventDefault();

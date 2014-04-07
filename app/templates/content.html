@@ -56,7 +56,7 @@
 			<span class="stepTitle step3">
 				Step 3
 			</span>
-			<a href="" class="stepTitle step4 download">
+			<a href="" class="stepTitle step4 download" download="mockUp.png">
 				Download your Mockup!
 			</a>
 			<div>
@@ -69,37 +69,46 @@
 	</div>
 	<img id="overlay" style="display:none;"/>
 	<div class="stepBlock step1">
-		<div id="bgSelector">
+		<div class="bgSelectors">
 			<div class="stepTitle">
 				Step 1
 			</div>
-			<ul>
-				<li id="bgFileUploadButton" class="stepButton">
-					<div class="imgWrap">
-						<div class="fa fa-upload"></div>
-						<div class="verticalfixer"></div>
-					</div>
-					<div class="imgAbout">
-						<div class="imgTitle">
-							Upload your own!
-						</div>
-					</div>
-				</li>
-				<% _.each(bgs,function(bg){%>			
-					<li class="demoImage stepButton" data-img="<%= bg.fileURI %>">
+			<div id="bgSelectors">
+				<div class="prev">
+					<div class="fa fa-chevron-left"></div>
+				</div>
+				<div class="next">
+					<div class="fa fa-chevron-right"></div>
+				</div>
+				<ul style="min-width:<%= 16*(bgs.length+1) %>em;<%=(bgs.length>2?"text-align:left":"")%>">
+					<li id="bgFileUploadButton" class="stepButton">
 						<div class="imgWrap">
-							<img src="<%= bg.thumbURI%>"/>
+							<div class="fa fa-upload"></div>
 							<div class="verticalfixer"></div>
 						</div>
 						<div class="imgAbout">
 							<div class="imgTitle">
-								<%= bg.name %>
+								Upload your own!
 							</div>
-							<a href="<%= bg.attributionLink%>" target="_blank">by <%= bg.attributionText%></a>
 						</div>
 					</li>
-				<%})%>
-			</ul>
+					<% _.each(bgs,function(bg){%>			
+						<li class="demoImage stepButton" data-img="<%= bg.fileURI %>">
+							<div class="imgWrap">
+								<img src="<%= bg.thumbURI%>"/>
+								<div class="verticalfixer"></div>
+							</div>
+							<div class="imgAbout">
+								<div class="imgTitle">
+									<%= bg.name %>
+								</div>
+								<a href="<%= bg.attributionLink%>" target="_blank">by <%= bg.attributionText%></a>
+							</div>
+						</li>
+					<%})%>
+					<div style="clear:both"></div>
+				</ul>
+			</div>
 			<span class="stepInstruction">
 				Select a background, or upload your own!
 			</span>
